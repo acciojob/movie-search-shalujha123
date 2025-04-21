@@ -7,7 +7,8 @@ const MovieSearch = () => {
 
   const API_KEY = "99eb9fd1";
 
-  async function fetchData() {
+  async function fetchData(e) {
+    e.preventDefault()
     if (!query) return;
     try {
       const response = await fetch(
@@ -30,13 +31,13 @@ const MovieSearch = () => {
   return (
     <div>
       <h2>Search Movie</h2>
-      <form>
+      <form onSubmit={fetchData}>
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={fetchData}>Search</button>
+        <button type="submit">Search</button>
       </form>
 
       {error && <p className="error">{error}</p>}
